@@ -83,15 +83,26 @@ impl Universe {
         let width = 64;
         let height = 64;
 
-        let cells = (0..width * height)
-            .map(|i| {
-                if i % 2 == 0 || i % 7 == 0 {
-                    Cell::Alive
-                } else {
-                    Cell::Dead
-                }
-            })
-            .collect();
+        // let cells = (0..width * height)
+        //     .map(|_| {
+        //         //if i % 2 == 0 || i % 7 == 0 {
+        //             Cell::Alive
+        //         // } else {
+        //         //     Cell::Dead
+        //         // }
+        //     })
+        //     .collect();
+        let mut cells = vec![Cell::Dead; (width * height) as usize];
+        let get_index = |row: u32, column: u32| -> usize { (row * width + column) as usize };
+        cells[get_index(1, 4)] = Cell::Alive;
+        cells[get_index(2, 5)] = Cell::Alive;
+        cells[get_index(3, 0)] = Cell::Alive;
+        cells[get_index(3, 5)] = Cell::Alive;
+        cells[get_index(4, 1)] = Cell::Alive;
+        cells[get_index(4, 2)] = Cell::Alive;
+        cells[get_index(4, 3)] = Cell::Alive;
+        cells[get_index(4, 4)] = Cell::Alive;
+        cells[get_index(4, 5)] = Cell::Alive;
 
         Universe {
             width,
